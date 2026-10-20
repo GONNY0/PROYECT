@@ -1,68 +1,100 @@
 {
-  "schemaVersion": "g4.public-source-package.v1",
-  "createdAtUtc": "2026-10-20T10:32:39.294Z",
-  "baseCommit": "a3cc0c0c3ebb582e37b480bb0d7c40ff1b23e8dc",
+  "schemaVersion": "g4.public-schedule-package.v1",
+  "createdAtUtc": "2026-10-20T10:53:33.420Z",
+  "baseCommit": "7b847616ec5536afec966b5d8b41b98a70bdd0ef",
+  "scheduleId": "g4-public-availability-20261021-v1",
+  "planSha256": "fdf372b84e545255a933c09dbf97ca72f9f6f2dff2970dc12b9c8b8b7a4d4c15",
+  "scope": "PUBLIC_OPERATIONAL_CAPTURE_ONLY_NO_FINANCIAL_ACCEPTANCE",
   "files": [
     {
-      "path": "g4-public/work/public-capture-bundle.mjs",
-      "bytes": 18674,
-      "sha256": "5de6f7647a6444fa2e16ac40f63c634982b6b6a24f278f9b32a00bc7d30592ec"
+      "path": ".github/workflows/g4-public-capture.yml",
+      "sha256": "6a22c0970e35fdf34e84ec83b49ddf46e0349f5c81bb69d3ca8a7dcbabb30a2a",
+      "bytes": 1355
     },
     {
-      "path": "g4-public/work/tests/public-capture-bundle.test.mjs",
-      "bytes": 10827,
-      "sha256": "4f71fd361c5824556aa8e650982c41338faa009488e050d392e48571645619db"
-    },
-    {
-      "path": "g4-public/work/public-capture-native-check.mjs",
-      "bytes": 2506,
-      "sha256": "bb43d01b553d78326a3903bc25e5f189032d02d64fa9c83d2d5d9887380d3fa6"
-    },
-    {
-      "path": "g4-public/work/engine-node/data-history.mjs",
-      "bytes": 15041,
-      "sha256": "b06cc5182a1969aef9fd31c16b10b9fd0f3ea5f1cfe7c431beb32ea17668fb32"
-    },
-    {
-      "path": "g4-public/work/engine-node/paper-precision.mjs",
-      "bytes": 2713,
-      "sha256": "6f3eecc3cb217f9d34e0bbba34019d21831b4de9d8aed171f62a8a6ca0bfa4e1"
-    },
-    {
-      "path": "g4-public/work/engine-node/brokers/alpaca-transport.mjs",
-      "bytes": 8732,
-      "sha256": "1e48a224c257bcfb7715f1dd85f9ba46d88bee300afc1ced409f58f506af05f2"
-    },
-    {
-      "path": "g4-public/work/engine-node/brokers/alpaca-data.mjs",
-      "bytes": 4515,
-      "sha256": "709884b50646d9a51980fc1c763ee2c5bb356746c2b9ea2216dd24df292e0bd5"
-    },
-    {
-      "path": "g4-public/work/engine-node/brokers/alpaca-capture.mjs",
-      "bytes": 7758,
-      "sha256": "dc2c731b75453eeee68f4606f3faf3f3de1cbf60ab46c019ce1d7639115322e7"
-    },
-    {
-      "path": "g4-public/work/engine-node/brokers/alpaca-error.mjs",
-      "bytes": 8339,
-      "sha256": "2106d5d0d346297698ae8eca861527e3bb721b7e7a0e7c88de28d0f221cab7d3"
-    },
-    {
-      "path": "g4-public/verify-package.mjs",
-      "bytes": 1275,
-      "sha256": "2438b9a89d1b319f5f71f95cf3c03148c7b6e714afbf64f2b12c6b2220ed4c6f"
+      "path": ".github/workflows/g4-public-schedule.yml",
+      "sha256": "5fdc16ee367cec2bc0a019f68cd69b06faeaa9272673a9ea353285cd845ddf8d",
+      "bytes": 1684
     },
     {
       "path": "g4-public/README.md",
-      "bytes": 1009,
-      "sha256": "1c8fc66ad4f58522ca74397119a2fc1fc035668d529b87011f9fa38527055ef3"
+      "sha256": "b2d0ed80b2ab6d7c084790b38e6cb9e69146264a23d8a22c2972f64c13f221d2",
+      "bytes": 2005
     },
     {
-      "path": ".github/workflows/g4-public-capture.yml",
-      "bytes": 1355,
-      "sha256": "6a22c0970e35fdf34e84ec83b49ddf46e0349f5c81bb69d3ca8a7dcbabb30a2a"
+      "path": "g4-public/schedule-plan.json",
+      "sha256": "be8024b18a93fb4f55af993fb5ad77e6dc00dacefa29a2818d3e118797d75774",
+      "bytes": 4941
+    },
+    {
+      "path": "g4-public/verify-package.mjs",
+      "sha256": "9c6c525e26a81f71d4610609c6f1b3bb2fd3e7aa8050dfa8a262fa638e179862",
+      "bytes": 1614
+    },
+    {
+      "path": "g4-public/work/audit-public-schedule.mjs",
+      "sha256": "aa1298ae76fcaf1b26b7547a31957495a10fd495200e8f326ecd855688adcecc",
+      "bytes": 17788
+    },
+    {
+      "path": "g4-public/work/engine-node/brokers/alpaca-capture.mjs",
+      "sha256": "dc2c731b75453eeee68f4606f3faf3f3de1cbf60ab46c019ce1d7639115322e7",
+      "bytes": 7758
+    },
+    {
+      "path": "g4-public/work/engine-node/brokers/alpaca-data.mjs",
+      "sha256": "709884b50646d9a51980fc1c763ee2c5bb356746c2b9ea2216dd24df292e0bd5",
+      "bytes": 4515
+    },
+    {
+      "path": "g4-public/work/engine-node/brokers/alpaca-error.mjs",
+      "sha256": "2106d5d0d346297698ae8eca861527e3bb721b7e7a0e7c88de28d0f221cab7d3",
+      "bytes": 8339
+    },
+    {
+      "path": "g4-public/work/engine-node/brokers/alpaca-transport.mjs",
+      "sha256": "1e48a224c257bcfb7715f1dd85f9ba46d88bee300afc1ced409f58f506af05f2",
+      "bytes": 8732
+    },
+    {
+      "path": "g4-public/work/engine-node/data-history.mjs",
+      "sha256": "b06cc5182a1969aef9fd31c16b10b9fd0f3ea5f1cfe7c431beb32ea17668fb32",
+      "bytes": 15041
+    },
+    {
+      "path": "g4-public/work/engine-node/paper-precision.mjs",
+      "sha256": "6f3eecc3cb217f9d34e0bbba34019d21831b4de9d8aed171f62a8a6ca0bfa4e1",
+      "bytes": 2713
+    },
+    {
+      "path": "g4-public/work/public-capture-bundle.mjs",
+      "sha256": "5de6f7647a6444fa2e16ac40f63c634982b6b6a24f278f9b32a00bc7d30592ec",
+      "bytes": 18674
+    },
+    {
+      "path": "g4-public/work/public-capture-native-check.mjs",
+      "sha256": "bb43d01b553d78326a3903bc25e5f189032d02d64fa9c83d2d5d9887380d3fa6",
+      "bytes": 2506
+    },
+    {
+      "path": "g4-public/work/public-capture-schedule.mjs",
+      "sha256": "70d8bfa45fc660c1953eff2037f06f2d28ab88e82f42d45abf48dbff030a85d8",
+      "bytes": 12247
+    },
+    {
+      "path": "g4-public/work/tests/audit-public-schedule.test.mjs",
+      "sha256": "7868d99e725f0029b4fa7d702a59ebcb604598f0f57513364c1554e342471629",
+      "bytes": 17669
+    },
+    {
+      "path": "g4-public/work/tests/public-capture-bundle.test.mjs",
+      "sha256": "4f71fd361c5824556aa8e650982c41338faa009488e050d392e48571645619db",
+      "bytes": 10827
+    },
+    {
+      "path": "g4-public/work/tests/public-capture-schedule.test.mjs",
+      "sha256": "c303ca28465a8924b98f9d7519dde07ec3fdd2528b678efb5c1d7187564ea8d5",
+      "bytes": 10216
     }
-  ],
-  "scope": "PUBLIC_DATA_CODE_ONLY_NO_PRIVATE_STATE"
+  ]
 }

@@ -1,16 +1,32 @@
-# G4 public capture portability
+# G4 bounded public availability probe
 
-This isolated package verifies public market-data acquisition on Linux and offline
-replay on another host. It contains no account records, credentials, private
-database, trading adapter, order submission entry point, or project Git history.
-The shared HTTP transport is reused only in DATA mode by the entry point.
+The immutable plan has 31 UTC windows, 00:10 inclusive to 00:20 exclusive,
+from 2026-10-21 through 2026-11-20. The timer requests a run at 00:13.
+GitHub can delay or drop scheduled work. A late or absent attempt stays visible.
+No closed window is backfilled. Within the imported collection, the first
+scheduled attempt remains selected; later duplicates cannot replace a known
+earlier failed attempt with a better result.
 
-The workflow is a one-shot verification on pushes to its dedicated branch.
-It is not an always-on service or a financial experiment. No daily coverage,
-execution quality, fills, returns, or financial-account acceptance are established.
-Incomplete acquisitions remain incomplete; no missing observations are backfilled.
+Only the GitHub schedule event is eligible for operational coverage. Pushes and
+manual runs are diagnostics. The collector makes no market request outside a
+window, after the plan expires, or when the plan is disabled. Captures, failures,
+and run identities are preserved in separate artifacts retained for 45 days.
+The local auditor requires external GitHub identity and result-hash bindings.
+It identifies eligible captures only within the imported collection. Complete
+GitHub attempt inventory is not yet independently established, so overall
+coverage acceptance stays blocked even when imported captures are valid.
+Unbound directories and injected fixtures cannot establish eligible captures.
 
-Standard GitHub-hosted Linux runners in this public repository are used.
-No paid runners, models, account credentials, services or billing settings are configured.
-Source and provider-response hashes are local integrity evidence, not provider signatures.
-Artifacts expire after seven days and must be downloaded for durable local evidence.
+The cron expressions have no year field. The plan's absolute expiry prevents any
+acquisition after 2026-11-20T00:20:00Z; remove the timer after final recovery to
+avoid future no-op jobs. Pausing the workflow in GitHub stops future invocations.
+Do not rewrite the registered plan to hide a missed or failed window.
+
+This isolated package contains public data code only, with no private database,
+financial-account credentials, order-entry gateway, or financial experiment.
+Its results do not repair V1/V2, establish profitability, or authorize capital.
+The shared HTTP transport is invoked only in DATA mode. Hashes prove consistency
+of local evidence, not provider signatures or hostile-host isolation.
+
+Standard public Linux runners and built-in Node APIs are used. No paid service,
+personal token, model API, or billing change is configured.

@@ -1,0 +1,45 @@
+name: G4 public daily availability
+on:
+  push:
+    branches: [codex/g4-public-schedule, main]
+    paths: ['g4-public/**', '.github/workflows/g4-public-schedule.yml']
+  workflow_dispatch:
+  schedule:
+    - cron: '13 0 21-31 10 *'
+    - cron: '13 0 1-20 11 *'
+permissions:
+  contents: read
+concurrency:
+  group: g4-public-daily-availability
+  cancel-in-progress: false
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    defaults:
+      run:
+        working-directory: g4-public
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '24.19.0'
+          package-manager-cache: false
+      - name: Verify all release files
+        run: node verify-package.mjs
+      - name: Validate schedule, bundle and recovery auditor
+        if: github.event_name != 'schedule'
+        run: node --test --test-reporter=tap work/tests/public-capture-bundle.test.mjs work/tests/public-capture-schedule.test.mjs work/tests/audit-public-schedule.test.mjs
+      - name: Execute current window or record no acquisition
+        run: node work/public-capture-schedule.mjs --plan schedule-plan.json --directory artifacts
+      - name: Preserve complete or partial attempt
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: g4-public-schedule-${{ github.run_id }}-${{ github.run_attempt }}
+          path: g4-public/artifacts/
+          if-no-files-found: error
+          retention-days: 45
+          compression-level: 6
