@@ -1,0 +1,39 @@
+name: G4 public capture portability
+on:
+  push:
+    branches: [codex/g4-public-capture]
+    paths: ['g4-public/**', '.github/workflows/g4-public-capture.yml']
+permissions:
+  contents: read
+concurrency:
+  group: g4-public-capture-portability
+  cancel-in-progress: false
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: g4-public
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - name: Verify exported source hashes
+        run: node verify-package.mjs
+      - name: Test portable public capture
+        run: node --test --test-reporter=tap work/tests/public-capture-bundle.test.mjs
+      - name: Capture and replay actual public responses
+        run: node work/public-capture-native-check.mjs
+      - name: Preserve complete or partial evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: g4-public-capture-${{ github.run_id }}-${{ github.run_attempt }}
+          path: g4-public/artifacts/
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 6

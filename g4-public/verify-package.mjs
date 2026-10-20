@@ -1,0 +1,6 @@
+import fs from 'node:fs';import crypto from 'node:crypto';import assert from 'node:assert/strict';import path from 'node:path';
+const root=path.resolve(import.meta.dirname,'..');
+const m=JSON.parse(fs.readFileSync(path.join(import.meta.dirname,'package-manifest.json'),'utf8'));
+assert.deepEqual(m.files.map(f=>f.path).sort(),[".github/workflows/g4-public-capture.yml","g4-public/README.md","g4-public/verify-package.mjs","g4-public/work/engine-node/brokers/alpaca-capture.mjs","g4-public/work/engine-node/brokers/alpaca-data.mjs","g4-public/work/engine-node/brokers/alpaca-error.mjs","g4-public/work/engine-node/brokers/alpaca-transport.mjs","g4-public/work/engine-node/data-history.mjs","g4-public/work/engine-node/paper-precision.mjs","g4-public/work/public-capture-bundle.mjs","g4-public/work/public-capture-native-check.mjs","g4-public/work/tests/public-capture-bundle.test.mjs"]);
+for(const f of m.files){const target=path.join(root,f.path),s=fs.lstatSync(target);assert.ok(s.isFile()&&!s.isSymbolicLink()&&s.nlink===1&&s.size<1048576);const b=fs.readFileSync(target);assert.equal(b.length,f.bytes);assert.equal(crypto.createHash('sha256').update(b).digest('hex'),f.sha256);}
+console.log(JSON.stringify({status:'PUBLIC_SOURCE_PACKAGE_VERIFIED',files:m.files.length}));
