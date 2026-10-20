@@ -1,0 +1,212 @@
+{
+  "schemaVersion": "g4.public-capture-schedule.v1",
+  "id": "g4-public-availability-20261021-v1",
+  "repository": "GONNY0/PROYECT",
+  "enabled": true,
+  "registeredAtMs": 1792493131015,
+  "expiresAtMs": 1795134000000,
+  "windows": [
+    {
+      "id": "utc-2026-10-21",
+      "openMs": 1792541400000,
+      "closeMs": 1792542000000
+    },
+    {
+      "id": "utc-2026-10-22",
+      "openMs": 1792627800000,
+      "closeMs": 1792628400000
+    },
+    {
+      "id": "utc-2026-10-23",
+      "openMs": 1792714200000,
+      "closeMs": 1792714800000
+    },
+    {
+      "id": "utc-2026-10-24",
+      "openMs": 1792800600000,
+      "closeMs": 1792801200000
+    },
+    {
+      "id": "utc-2026-10-25",
+      "openMs": 1792887000000,
+      "closeMs": 1792887600000
+    },
+    {
+      "id": "utc-2026-10-26",
+      "openMs": 1792973400000,
+      "closeMs": 1792974000000
+    },
+    {
+      "id": "utc-2026-10-27",
+      "openMs": 1793059800000,
+      "closeMs": 1793060400000
+    },
+    {
+      "id": "utc-2026-10-28",
+      "openMs": 1793146200000,
+      "closeMs": 1793146800000
+    },
+    {
+      "id": "utc-2026-10-29",
+      "openMs": 1793232600000,
+      "closeMs": 1793233200000
+    },
+    {
+      "id": "utc-2026-10-30",
+      "openMs": 1793319000000,
+      "closeMs": 1793319600000
+    },
+    {
+      "id": "utc-2026-10-31",
+      "openMs": 1793405400000,
+      "closeMs": 1793406000000
+    },
+    {
+      "id": "utc-2026-11-01",
+      "openMs": 1793491800000,
+      "closeMs": 1793492400000
+    },
+    {
+      "id": "utc-2026-11-02",
+      "openMs": 1793578200000,
+      "closeMs": 1793578800000
+    },
+    {
+      "id": "utc-2026-11-03",
+      "openMs": 1793664600000,
+      "closeMs": 1793665200000
+    },
+    {
+      "id": "utc-2026-11-04",
+      "openMs": 1793751000000,
+      "closeMs": 1793751600000
+    },
+    {
+      "id": "utc-2026-11-05",
+      "openMs": 1793837400000,
+      "closeMs": 1793838000000
+    },
+    {
+      "id": "utc-2026-11-06",
+      "openMs": 1793923800000,
+      "closeMs": 1793924400000
+    },
+    {
+      "id": "utc-2026-11-07",
+      "openMs": 1794010200000,
+      "closeMs": 1794010800000
+    },
+    {
+      "id": "utc-2026-11-08",
+      "openMs": 1794096600000,
+      "closeMs": 1794097200000
+    },
+    {
+      "id": "utc-2026-11-09",
+      "openMs": 1794183000000,
+      "closeMs": 1794183600000
+    },
+    {
+      "id": "utc-2026-11-10",
+      "openMs": 1794269400000,
+      "closeMs": 1794270000000
+    },
+    {
+      "id": "utc-2026-11-11",
+      "openMs": 1794355800000,
+      "closeMs": 1794356400000
+    },
+    {
+      "id": "utc-2026-11-12",
+      "openMs": 1794442200000,
+      "closeMs": 1794442800000
+    },
+    {
+      "id": "utc-2026-11-13",
+      "openMs": 1794528600000,
+      "closeMs": 1794529200000
+    },
+    {
+      "id": "utc-2026-11-14",
+      "openMs": 1794615000000,
+      "closeMs": 1794615600000
+    },
+    {
+      "id": "utc-2026-11-15",
+      "openMs": 1794701400000,
+      "closeMs": 1794702000000
+    },
+    {
+      "id": "utc-2026-11-16",
+      "openMs": 1794787800000,
+      "closeMs": 1794788400000
+    },
+    {
+      "id": "utc-2026-11-17",
+      "openMs": 1794874200000,
+      "closeMs": 1794874800000
+    },
+    {
+      "id": "utc-2026-11-18",
+      "openMs": 1794960600000,
+      "closeMs": 1794961200000
+    },
+    {
+      "id": "utc-2026-11-19",
+      "openMs": 1795047000000,
+      "closeMs": 1795047600000
+    },
+    {
+      "id": "utc-2026-11-20",
+      "openMs": 1795133400000,
+      "closeMs": 1795134000000
+    }
+  ],
+  "allowedEvents": [
+    "schedule",
+    "workflow_dispatch",
+    "push"
+  ],
+  "sourceBinding": [
+    {
+      "path": "public-capture-schedule.mjs",
+      "sha256": "70d8bfa45fc660c1953eff2037f06f2d28ab88e82f42d45abf48dbff030a85d8",
+      "bytes": 12247
+    },
+    {
+      "path": "public-capture-bundle.mjs",
+      "sha256": "5de6f7647a6444fa2e16ac40f63c634982b6b6a24f278f9b32a00bc7d30592ec",
+      "bytes": 18674
+    },
+    {
+      "path": "engine-node/data-history.mjs",
+      "sha256": "b06cc5182a1969aef9fd31c16b10b9fd0f3ea5f1cfe7c431beb32ea17668fb32",
+      "bytes": 15041
+    },
+    {
+      "path": "engine-node/paper-precision.mjs",
+      "sha256": "6f3eecc3cb217f9d34e0bbba34019d21831b4de9d8aed171f62a8a6ca0bfa4e1",
+      "bytes": 2713
+    },
+    {
+      "path": "engine-node/brokers/alpaca-data.mjs",
+      "sha256": "709884b50646d9a51980fc1c763ee2c5bb356746c2b9ea2216dd24df292e0bd5",
+      "bytes": 4515
+    },
+    {
+      "path": "engine-node/brokers/alpaca-transport.mjs",
+      "sha256": "1e48a224c257bcfb7715f1dd85f9ba46d88bee300afc1ced409f58f506af05f2",
+      "bytes": 8732
+    },
+    {
+      "path": "engine-node/brokers/alpaca-capture.mjs",
+      "sha256": "dc2c731b75453eeee68f4606f3faf3f3de1cbf60ab46c019ce1d7639115322e7",
+      "bytes": 7758
+    },
+    {
+      "path": "engine-node/brokers/alpaca-error.mjs",
+      "sha256": "2106d5d0d346297698ae8eca861527e3bb721b7e7a0e7c88de28d0f221cab7d3",
+      "bytes": 8339
+    }
+  ]
+}
