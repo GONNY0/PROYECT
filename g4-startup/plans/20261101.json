@@ -1,0 +1,116 @@
+{
+  "schemaVersion": "g4.public-availability-pilot.v2",
+  "schedule": {
+    "schemaVersion": "g4.public-capture-schedule.v1",
+    "id": "g4-public-startup-20261101-v1",
+    "repository": "GONNY0/PROYECT",
+    "enabled": true,
+    "registeredAtMs": 1793315591314,
+    "expiresAtMs": 1793492370000,
+    "windows": [
+      {
+        "id": "startup-20261101-01",
+        "openMs": 1793491800000,
+        "closeMs": 1793491890000
+      },
+      {
+        "id": "startup-20261101-02",
+        "openMs": 1793492040000,
+        "closeMs": 1793492130000
+      },
+      {
+        "id": "startup-20261101-03",
+        "openMs": 1793492280000,
+        "closeMs": 1793492370000
+      }
+    ],
+    "allowedEvents": [
+      "schedule"
+    ],
+    "sourceBinding": [
+      {
+        "path": "public-capture-schedule.mjs",
+        "sha256": "70d8bfa45fc660c1953eff2037f06f2d28ab88e82f42d45abf48dbff030a85d8",
+        "bytes": 12247
+      },
+      {
+        "path": "public-capture-bundle.mjs",
+        "sha256": "5de6f7647a6444fa2e16ac40f63c634982b6b6a24f278f9b32a00bc7d30592ec",
+        "bytes": 18674
+      },
+      {
+        "path": "engine-node/data-history.mjs",
+        "sha256": "b06cc5182a1969aef9fd31c16b10b9fd0f3ea5f1cfe7c431beb32ea17668fb32",
+        "bytes": 15041
+      },
+      {
+        "path": "engine-node/paper-precision.mjs",
+        "sha256": "6f3eecc3cb217f9d34e0bbba34019d21831b4de9d8aed171f62a8a6ca0bfa4e1",
+        "bytes": 2713
+      },
+      {
+        "path": "engine-node/brokers/alpaca-data.mjs",
+        "sha256": "709884b50646d9a51980fc1c763ee2c5bb356746c2b9ea2216dd24df292e0bd5",
+        "bytes": 4515
+      },
+      {
+        "path": "engine-node/brokers/alpaca-transport.mjs",
+        "sha256": "1e48a224c257bcfb7715f1dd85f9ba46d88bee300afc1ced409f58f506af05f2",
+        "bytes": 8732
+      },
+      {
+        "path": "engine-node/brokers/alpaca-capture.mjs",
+        "sha256": "dc2c731b75453eeee68f4606f3faf3f3de1cbf60ab46c019ce1d7639115322e7",
+        "bytes": 7758
+      },
+      {
+        "path": "engine-node/brokers/alpaca-error.mjs",
+        "sha256": "2106d5d0d346297698ae8eca861527e3bb721b7e7a0e7c88de28d0f221cab7d3",
+        "bytes": 8339
+      }
+    ]
+  },
+  "startup": {
+    "notBeforeMs": 1793471820000,
+    "latestReadyAtMs": 1793491680000
+  },
+  "limits": {
+    "maxRuntimeMs": 21000000,
+    "pollMs": 1000,
+    "maxClockSkewMs": 1000,
+    "maxObservationGapMs": 5000
+  },
+  "runtime": {
+    "nodeVersion": "v24.19.0",
+    "nodeSha256": "bc17c508ffeed0ec622934f9b7fa72f8e78da65350e63c3eceb56fa688aa5e12",
+    "platform": "linux",
+    "architecture": "x64"
+  },
+  "wrapperSource": {
+    "path": "public-availability-pilot.mjs",
+    "sha256": "4bec440bd4ca0621e1d2c8d32b7fab6d332384ad782db0bd115c13921f6f7252",
+    "bytes": 24970
+  },
+  "auditSourceBinding": [
+    {
+      "path": "audit-public-availability-pilot.mjs",
+      "sha256": "ec8f3f4eae621d7e6d48da2436c489ea89728bc30cf9c0bd4b838fd6e9184338",
+      "bytes": 24047
+    },
+    {
+      "path": "audit-public-schedule.mjs",
+      "sha256": "aa1298ae76fcaf1b26b7547a31957495a10fd495200e8f326ecd855688adcecc",
+      "bytes": 17788
+    },
+    {
+      "path": "public-capture-quality.mjs",
+      "sha256": "a258274ade3c2dbca1c52dde1dd97fabafbed0a596512b47a323c3cc561b4395",
+      "bytes": 8900
+    },
+    {
+      "path": "inspect-public-pilot-ready-archive.ps1",
+      "sha256": "d23f0546fd16833289320ed709e53bbe5cce693587d635c027b7b411c1f20337",
+      "bytes": 4347
+    }
+  ]
+}

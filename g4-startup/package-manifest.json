@@ -1,0 +1,193 @@
+{
+  "schemaVersion": "g4.public-startup-pilot-release.v1",
+  "registeredAtUtc": "2026-10-29T23:13:11.314Z",
+  "sessions": [
+    {
+      "date": "2026-10-31",
+      "start": "2026-10-30T18:37:00Z",
+      "cron": "37 18 30 10 *",
+      "file": "plans/20261031.json",
+      "planSha256": "af5ba7f2a7830a2bab1132aabb0a29226ac1f55ba21b1b9d120719b3e28373b3",
+      "notBeforeMs": 1793385420000,
+      "latestReadyAtMs": 1793405280000,
+      "expiresAtMs": 1793405970000,
+      "windows": [
+        {
+          "id": "startup-20261031-01",
+          "openMs": 1793405400000,
+          "closeMs": 1793405490000
+        },
+        {
+          "id": "startup-20261031-02",
+          "openMs": 1793405640000,
+          "closeMs": 1793405730000
+        },
+        {
+          "id": "startup-20261031-03",
+          "openMs": 1793405880000,
+          "closeMs": 1793405970000
+        }
+      ]
+    },
+    {
+      "date": "2026-11-01",
+      "start": "2026-10-31T18:37:00Z",
+      "cron": "37 18 31 10 *",
+      "file": "plans/20261101.json",
+      "planSha256": "399e74cc55d74f3a2c94fd56d30cdb0806a4d365cce89db58f9e29744839c5da",
+      "notBeforeMs": 1793471820000,
+      "latestReadyAtMs": 1793491680000,
+      "expiresAtMs": 1793492370000,
+      "windows": [
+        {
+          "id": "startup-20261101-01",
+          "openMs": 1793491800000,
+          "closeMs": 1793491890000
+        },
+        {
+          "id": "startup-20261101-02",
+          "openMs": 1793492040000,
+          "closeMs": 1793492130000
+        },
+        {
+          "id": "startup-20261101-03",
+          "openMs": 1793492280000,
+          "closeMs": 1793492370000
+        }
+      ]
+    }
+  ],
+  "financialAcceptance": false,
+  "files": [
+    {
+      "path": "g4-startup/work/public-availability-pilot.mjs",
+      "bytes": 24970,
+      "sha256": "4bec440bd4ca0621e1d2c8d32b7fab6d332384ad782db0bd115c13921f6f7252"
+    },
+    {
+      "path": "g4-startup/work/audit-public-availability-pilot.mjs",
+      "bytes": 24047,
+      "sha256": "ec8f3f4eae621d7e6d48da2436c489ea89728bc30cf9c0bd4b838fd6e9184338"
+    },
+    {
+      "path": "g4-startup/work/inspect-public-pilot-ready-archive.ps1",
+      "bytes": 4347,
+      "sha256": "d23f0546fd16833289320ed709e53bbe5cce693587d635c027b7b411c1f20337"
+    },
+    {
+      "path": "g4-startup/work/public-capture-schedule.mjs",
+      "bytes": 12247,
+      "sha256": "70d8bfa45fc660c1953eff2037f06f2d28ab88e82f42d45abf48dbff030a85d8"
+    },
+    {
+      "path": "g4-startup/work/public-capture-bundle.mjs",
+      "bytes": 18674,
+      "sha256": "5de6f7647a6444fa2e16ac40f63c634982b6b6a24f278f9b32a00bc7d30592ec"
+    },
+    {
+      "path": "g4-startup/work/audit-public-schedule.mjs",
+      "bytes": 17788,
+      "sha256": "aa1298ae76fcaf1b26b7547a31957495a10fd495200e8f326ecd855688adcecc"
+    },
+    {
+      "path": "g4-startup/work/public-capture-quality.mjs",
+      "bytes": 8900,
+      "sha256": "a258274ade3c2dbca1c52dde1dd97fabafbed0a596512b47a323c3cc561b4395"
+    },
+    {
+      "path": "g4-startup/work/engine-node/data-history.mjs",
+      "bytes": 15041,
+      "sha256": "b06cc5182a1969aef9fd31c16b10b9fd0f3ea5f1cfe7c431beb32ea17668fb32"
+    },
+    {
+      "path": "g4-startup/work/engine-node/paper-precision.mjs",
+      "bytes": 2713,
+      "sha256": "6f3eecc3cb217f9d34e0bbba34019d21831b4de9d8aed171f62a8a6ca0bfa4e1"
+    },
+    {
+      "path": "g4-startup/work/engine-node/brokers/alpaca-data.mjs",
+      "bytes": 4515,
+      "sha256": "709884b50646d9a51980fc1c763ee2c5bb356746c2b9ea2216dd24df292e0bd5"
+    },
+    {
+      "path": "g4-startup/work/engine-node/brokers/alpaca-transport.mjs",
+      "bytes": 8732,
+      "sha256": "1e48a224c257bcfb7715f1dd85f9ba46d88bee300afc1ced409f58f506af05f2"
+    },
+    {
+      "path": "g4-startup/work/engine-node/brokers/alpaca-capture.mjs",
+      "bytes": 7758,
+      "sha256": "dc2c731b75453eeee68f4606f3faf3f3de1cbf60ab46c019ce1d7639115322e7"
+    },
+    {
+      "path": "g4-startup/work/engine-node/brokers/alpaca-error.mjs",
+      "bytes": 8339,
+      "sha256": "2106d5d0d346297698ae8eca861527e3bb721b7e7a0e7c88de28d0f221cab7d3"
+    },
+    {
+      "path": "g4-startup/work/tests/public-availability-pilot.test.mjs",
+      "bytes": 23720,
+      "sha256": "2b8cef1130e7e500a586fa29258714867a0c4da1af9f890dca5af37d81c1119f"
+    },
+    {
+      "path": "g4-startup/work/tests/audit-public-availability-pilot.test.mjs",
+      "bytes": 20633,
+      "sha256": "f4a700c7b618904c8a2c8c29308d8f7f256dcca7bd47e52d834dab657092a2e6"
+    },
+    {
+      "path": "g4-startup/work/tests/inspect-public-pilot-ready-archive.test.ps1",
+      "bytes": 3904,
+      "sha256": "f4e68ef5c5213e8d0193b50fc533d29a556c75d1d724b2d9f2d19550e0208a19"
+    },
+    {
+      "path": "g4-startup/work/tests/public-capture-bundle.test.mjs",
+      "bytes": 10827,
+      "sha256": "4f71fd361c5824556aa8e650982c41338faa009488e050d392e48571645619db"
+    },
+    {
+      "path": "g4-startup/work/tests/public-capture-schedule.test.mjs",
+      "bytes": 10216,
+      "sha256": "c303ca28465a8924b98f9d7519dde07ec3fdd2528b678efb5c1d7187564ea8d5"
+    },
+    {
+      "path": "g4-startup/work/tests/audit-public-schedule.test.mjs",
+      "bytes": 17669,
+      "sha256": "7868d99e725f0029b4fa7d702a59ebcb604598f0f57513364c1554e342471629"
+    },
+    {
+      "path": "g4-startup/work/tests/public-capture-quality.test.mjs",
+      "bytes": 8254,
+      "sha256": "232027b0fcb97d4cb63835ee9aa023f24a5e26918b7e1a99a96d12eb52dd4b45"
+    },
+    {
+      "path": "g4-startup/work/config/public-capture-quality-20261020.json",
+      "bytes": 774,
+      "sha256": "c7995a2b418a60d2e546d01e35241173549a5d809acc9e9ef46f770f7250be79"
+    },
+    {
+      "path": "g4-startup/plans/20261031.json",
+      "bytes": 3460,
+      "sha256": "af5ba7f2a7830a2bab1132aabb0a29226ac1f55ba21b1b9d120719b3e28373b3"
+    },
+    {
+      "path": "g4-startup/plans/20261101.json",
+      "bytes": 3460,
+      "sha256": "399e74cc55d74f3a2c94fd56d30cdb0806a4d365cce89db58f9e29744839c5da"
+    },
+    {
+      "path": ".github/workflows/g4-public-startup-pilot.yml",
+      "bytes": 5410,
+      "sha256": "3b0df18a362db6c625419f824cb2fd84c10183bacf9c4b6696b85b25d07bd7e3"
+    },
+    {
+      "path": "g4-startup/README.md",
+      "bytes": 1592,
+      "sha256": "ed9c53be555622cf3137f4d0be2c5aad951efbbcd4e7ece82a61b1cb5741cf47"
+    },
+    {
+      "path": "g4-startup/verify-package.mjs",
+      "bytes": 886,
+      "sha256": "cada07ce5a0b625018821f56e79f3dc9692d91eddaa7b62eae7c1d74606d2a15"
+    }
+  ]
+}
