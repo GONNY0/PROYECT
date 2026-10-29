@@ -1,0 +1,99 @@
+name: G4 finite scheduled startup pilot
+on:
+  schedule:
+    - cron: '37 18 30 10 *'
+    - cron: '37 18 31 10 *'
+permissions:
+  contents: read
+concurrency:
+  group: g4-finite-scheduled-startup-pilot
+  cancel-in-progress: false
+jobs:
+  pilot:
+    if: github.event_name == 'schedule' && github.repository == 'GONNY0/PROYECT' && github.event.repository.private == false && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 355
+    defaults:
+      run:
+        working-directory: g4-startup
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24.19.0
+          package-manager-cache: false
+      - name: Verify reviewed package
+        run: node verify-package.mjs
+      - name: Select only the registered cron and absolute session
+        id: session
+        env:
+          G4_EVENT_SCHEDULE: ${{ github.event.schedule }}
+        run: |
+          case "$G4_EVENT_SCHEDULE" in
+            "37 18 30 10 *") PLAN="plans/20261031.json"; PLAN_SHA="af5ba7f2a7830a2bab1132aabb0a29226ac1f55ba21b1b9d120719b3e28373b3" ;;
+            "37 18 31 10 *") PLAN="plans/20261101.json"; PLAN_SHA="399e74cc55d74f3a2c94fd56d30cdb0806a4d365cce89db58f9e29744839c5da" ;;
+            *) printf "%s\n" "Unregistered schedule" >&2; exit 1 ;;
+          esac
+          printf "plan=%s\nplan_sha256=%s\n" "$PLAN" "$PLAN_SHA" >> "$GITHUB_OUTPUT"
+          export G4_PLAN="$PWD/$PLAN"
+          node --input-type=module -e 'import fs from "node:fs"; import {validatePublicAvailabilityPilotPlan,publicAvailabilityPilotTiming} from "./work/public-availability-pilot.mjs"; const p=JSON.parse(fs.readFileSync(process.env.G4_PLAN)); validatePublicAvailabilityPilotPlan(p); const t=publicAvailabilityPilotTiming(p),now=Date.now(); if(now<t.notBeforeMs||now>t.latestReadyAtMs) throw Error("Outside registered startup interval");'
+      - name: Validate public capture and recovery controls
+        run: node --test --test-reporter=tap work/tests/public-availability-pilot.test.mjs work/tests/audit-public-availability-pilot.test.mjs work/tests/public-capture-bundle.test.mjs work/tests/public-capture-schedule.test.mjs work/tests/audit-public-schedule.test.mjs work/tests/public-capture-quality.test.mjs
+      - name: Prepare before the first absolute window
+        id: prepare
+        env:
+          PILOT_PLAN_SHA256: ${{ steps.session.outputs.plan_sha256 }}
+          PILOT_PLAN_FILE: ${{ steps.session.outputs.plan }}
+        run: |
+          node work/public-availability-pilot.mjs prepare --plan "$PWD/$PILOT_PLAN_FILE" --plan-sha256 "$PILOT_PLAN_SHA256" --directory "$PWD/out" > prepare-result.json
+          node --input-type=module -e 'import fs from "node:fs"; const r=JSON.parse(fs.readFileSync("prepare-result.json")); if(!/^[a-f0-9]{64}$/.test(r.readySha256)) throw Error("READY hash missing"); fs.appendFileSync(process.env.GITHUB_OUTPUT,"ready_sha256="+r.readySha256+"\n"); console.log(JSON.stringify(r));'
+      - name: Publish readiness before opening
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: g4-startup-ready-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            g4-startup/out/READY.json
+            g4-startup/out/pilot-plan.json
+            g4-startup/out/native-plan.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Wait and capture the three absolute windows
+        env:
+          PILOT_PLAN_SHA256: ${{ steps.session.outputs.plan_sha256 }}
+          PILOT_PLAN_FILE: ${{ steps.session.outputs.plan }}
+          PILOT_READY_SHA256: ${{ steps.prepare.outputs.ready_sha256 }}
+        run: node work/public-availability-pilot.mjs run --plan "$PWD/$PILOT_PLAN_FILE" --plan-sha256 "$PILOT_PLAN_SHA256" --directory "$PWD/out" --ready-sha256 "$PILOT_READY_SHA256"
+      - name: Preserve control and partial failure evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: g4-startup-control-${{ github.run_id }}-${{ github.run_attempt }}
+          path: g4-startup/out/*.json
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Preserve window one original envelope
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: g4-startup-window-01-${{ github.run_id }}-${{ github.run_attempt }}
+          path: g4-startup/out/captures/01/
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Preserve window two original envelope
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: g4-startup-window-02-${{ github.run_id }}-${{ github.run_attempt }}
+          path: g4-startup/out/captures/02/
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Preserve window three original envelope
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: g4-startup-window-03-${{ github.run_id }}-${{ github.run_attempt }}
+          path: g4-startup/out/captures/03/
+          if-no-files-found: warn
+          retention-days: 14
