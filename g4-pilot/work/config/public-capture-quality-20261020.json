@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "g4.public-capture-quality-policy.v1",
+  "id": "g4-public-capture-quality-20261020-v1",
+  "registeredAtMs": 1792531905000,
+  "planSha256": "fdf372b84e545255a933c09dbf97ca72f9f6f2dff2970dc12b9c8b8b7a4d4c15",
+  "firstWindowOpenMs": 1792541400000,
+  "scope": "AT_CAPTURE_ONLY_NOT_TRADE_AUTHORIZATION",
+  "quote": {
+    "provider": "ALPACA",
+    "source": "ALPACA_CRYPTO_US",
+    "symbol": "BTC/USD",
+    "currency": "USD",
+    "maxAgeAtReceiptMs": 10000,
+    "futureToleranceNs": "0",
+    "comparison": "RECEIPT_MILLISECOND_INTERVAL_UPPER_BOUND"
+  },
+  "history": {
+    "provider": "KRAKEN",
+    "symbol": "BTC-USD",
+    "intervalMs": 86400000,
+    "mostRecentClosedDayRequired": true,
+    "contiguousBarsRequired": true,
+    "openBarExcluded": true
+  }
+}
