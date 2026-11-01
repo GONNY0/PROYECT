@@ -1,0 +1,84 @@
+name: G4 finite public availability pilot
+on:
+  push:
+    branches: ['codex/g4-public-availability-pilot-20261028']
+    paths: ['g4-pilot/**', '.github/workflows/g4-public-availability-pilot.yml']
+permissions:
+  contents: read
+concurrency:
+  group: g4-finite-public-availability-pilot
+  cancel-in-progress: false
+jobs:
+  pilot:
+    if: github.repository == 'GONNY0/PROYECT' && github.event.repository.private == false && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    defaults:
+      run:
+        working-directory: g4-pilot
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24.19.0
+          package-manager-cache: false
+      - name: Verify reviewed package
+        run: node verify-package.mjs
+      - name: Validate public capture and recovery controls
+        run: node --test --test-reporter=tap work/tests/public-availability-pilot.test.mjs work/tests/audit-public-availability-pilot.test.mjs work/tests/public-capture-bundle.test.mjs work/tests/public-capture-schedule.test.mjs work/tests/audit-public-schedule.test.mjs work/tests/public-capture-quality.test.mjs
+      - name: Prepare before the first absolute window
+        id: prepare
+        env:
+          PILOT_PLAN_SHA256: 409bc5880c2ac4fdb207da6e6d596c5cea74c245664dd50dac1fec819aa4c481
+        run: |
+          node work/public-availability-pilot.mjs prepare --plan "$PWD/pilot-plan.json" --plan-sha256 "$PILOT_PLAN_SHA256" --directory "$PWD/out" > prepare-result.json
+          node --input-type=module -e 'import fs from "node:fs"; const r=JSON.parse(fs.readFileSync("prepare-result.json")); if(!/^[a-f0-9]{64}$/.test(r.readySha256)) throw Error("READY hash missing"); fs.appendFileSync(process.env.GITHUB_OUTPUT,"ready_sha256="+r.readySha256+"\n"); console.log(JSON.stringify(r));'
+      - name: Publish readiness before opening
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: g4-pilot-ready-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            g4-pilot/out/READY.json
+            g4-pilot/out/pilot-plan.json
+            g4-pilot/out/native-plan.json
+          if-no-files-found: error
+          retention-days: 7
+      - name: Wait and capture the three absolute windows
+        env:
+          PILOT_PLAN_SHA256: 409bc5880c2ac4fdb207da6e6d596c5cea74c245664dd50dac1fec819aa4c481
+          PILOT_READY_SHA256: ${{ steps.prepare.outputs.ready_sha256 }}
+        run: node work/public-availability-pilot.mjs run --plan "$PWD/pilot-plan.json" --plan-sha256 "$PILOT_PLAN_SHA256" --directory "$PWD/out" --ready-sha256 "$PILOT_READY_SHA256"
+      - name: Preserve control and partial failure evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: g4-pilot-control-${{ github.run_id }}-${{ github.run_attempt }}
+          path: g4-pilot/out/*.json
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Preserve window one original envelope
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: g4-pilot-window-01-${{ github.run_id }}-${{ github.run_attempt }}
+          path: g4-pilot/out/captures/01/
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Preserve window two original envelope
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: g4-pilot-window-02-${{ github.run_id }}-${{ github.run_attempt }}
+          path: g4-pilot/out/captures/02/
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Preserve window three original envelope
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: g4-pilot-window-03-${{ github.run_id }}-${{ github.run_attempt }}
+          path: g4-pilot/out/captures/03/
+          if-no-files-found: warn
+          retention-days: 7

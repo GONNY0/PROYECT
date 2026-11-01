@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "g4.public-availability-pilot-release.v1",
+  "registeredAtUtc": "2026-10-28T14:06:41.640Z",
+  "planSha256": "409bc5880c2ac4fdb207da6e6d596c5cea74c245664dd50dac1fec819aa4c481",
+  "branch": "codex/g4-public-availability-pilot-20261028",
+  "financialAcceptance": false,
+  "files": [
+    {
+      "path": "g4-pilot/work/public-availability-pilot.mjs",
+      "bytes": 23497,
+      "sha256": "b1d215d24e7b02acdd9409118d800bda6c3efaa5dce4a0fe36516c72c7054863"
+    },
+    {
+      "path": "g4-pilot/work/audit-public-availability-pilot.mjs",
+      "bytes": 22830,
+      "sha256": "5830358073deeb56339bc9adf760ef63027668c6e329c5ed4abcef267ada2b17"
+    },
+    {
+      "path": "g4-pilot/work/inspect-public-pilot-ready-archive.ps1",
+      "bytes": 4347,
+      "sha256": "d23f0546fd16833289320ed709e53bbe5cce693587d635c027b7b411c1f20337"
+    },
+    {
+      "path": "g4-pilot/work/public-capture-schedule.mjs",
+      "bytes": 12247,
+      "sha256": "70d8bfa45fc660c1953eff2037f06f2d28ab88e82f42d45abf48dbff030a85d8"
+    },
+    {
+      "path": "g4-pilot/work/public-capture-bundle.mjs",
+      "bytes": 18674,
+      "sha256": "5de6f7647a6444fa2e16ac40f63c634982b6b6a24f278f9b32a00bc7d30592ec"
+    },
+    {
+      "path": "g4-pilot/work/audit-public-schedule.mjs",
+      "bytes": 17788,
+      "sha256": "aa1298ae76fcaf1b26b7547a31957495a10fd495200e8f326ecd855688adcecc"
+    },
+    {
+      "path": "g4-pilot/work/public-capture-quality.mjs",
+      "bytes": 8900,
+      "sha256": "a258274ade3c2dbca1c52dde1dd97fabafbed0a596512b47a323c3cc561b4395"
+    },
+    {
+      "path": "g4-pilot/work/engine-node/data-history.mjs",
+      "bytes": 15041,
+      "sha256": "b06cc5182a1969aef9fd31c16b10b9fd0f3ea5f1cfe7c431beb32ea17668fb32"
+    },
+    {
+      "path": "g4-pilot/work/engine-node/paper-precision.mjs",
+      "bytes": 2713,
+      "sha256": "6f3eecc3cb217f9d34e0bbba34019d21831b4de9d8aed171f62a8a6ca0bfa4e1"
+    },
+    {
+      "path": "g4-pilot/work/engine-node/brokers/alpaca-data.mjs",
+      "bytes": 4515,
+      "sha256": "709884b50646d9a51980fc1c763ee2c5bb356746c2b9ea2216dd24df292e0bd5"
+    },
+    {
+      "path": "g4-pilot/work/engine-node/brokers/alpaca-transport.mjs",
+      "bytes": 8732,
+      "sha256": "1e48a224c257bcfb7715f1dd85f9ba46d88bee300afc1ced409f58f506af05f2"
+    },
+    {
+      "path": "g4-pilot/work/engine-node/brokers/alpaca-capture.mjs",
+      "bytes": 7758,
+      "sha256": "dc2c731b75453eeee68f4606f3faf3f3de1cbf60ab46c019ce1d7639115322e7"
+    },
+    {
+      "path": "g4-pilot/work/engine-node/brokers/alpaca-error.mjs",
+      "bytes": 8339,
+      "sha256": "2106d5d0d346297698ae8eca861527e3bb721b7e7a0e7c88de28d0f221cab7d3"
+    },
+    {
+      "path": "g4-pilot/work/tests/public-availability-pilot.test.mjs",
+      "bytes": 19920,
+      "sha256": "27539d1f5c7ea5ab06b7f9c451a792d785c5611bef8ebc66f00ebcae5f315b17"
+    },
+    {
+      "path": "g4-pilot/work/tests/audit-public-availability-pilot.test.mjs",
+      "bytes": 18150,
+      "sha256": "a93ae003408992b50b43d79682e1609976abfa6ee0cc4077d561fcf9dfb61cf0"
+    },
+    {
+      "path": "g4-pilot/work/tests/inspect-public-pilot-ready-archive.test.ps1",
+      "bytes": 3904,
+      "sha256": "f4e68ef5c5213e8d0193b50fc533d29a556c75d1d724b2d9f2d19550e0208a19"
+    },
+    {
+      "path": "g4-pilot/work/tests/public-capture-bundle.test.mjs",
+      "bytes": 10827,
+      "sha256": "4f71fd361c5824556aa8e650982c41338faa009488e050d392e48571645619db"
+    },
+    {
+      "path": "g4-pilot/work/tests/public-capture-schedule.test.mjs",
+      "bytes": 10216,
+      "sha256": "c303ca28465a8924b98f9d7519dde07ec3fdd2528b678efb5c1d7187564ea8d5"
+    },
+    {
+      "path": "g4-pilot/work/tests/audit-public-schedule.test.mjs",
+      "bytes": 17669,
+      "sha256": "7868d99e725f0029b4fa7d702a59ebcb604598f0f57513364c1554e342471629"
+    },
+    {
+      "path": "g4-pilot/work/tests/public-capture-quality.test.mjs",
+      "bytes": 8254,
+      "sha256": "232027b0fcb97d4cb63835ee9aa023f24a5e26918b7e1a99a96d12eb52dd4b45"
+    },
+    {
+      "path": "g4-pilot/work/config/public-capture-quality-20261020.json",
+      "bytes": 774,
+      "sha256": "c7995a2b418a60d2e546d01e35241173549a5d809acc9e9ef46f770f7250be79"
+    },
+    {
+      "path": "g4-pilot/pilot-plan.json",
+      "bytes": 3373,
+      "sha256": "409bc5880c2ac4fdb207da6e6d596c5cea74c245664dd50dac1fec819aa4c481"
+    },
+    {
+      "path": "g4-pilot/README.md",
+      "bytes": 1754,
+      "sha256": "160dcd14138576bd713dd74fb59542794010678737fbba6f51111c4dbb9abd0d"
+    },
+    {
+      "path": ".github/workflows/g4-public-availability-pilot.yml",
+      "bytes": 4226,
+      "sha256": "2071ca554c892a2d63968cc9f57286339b1c5631ee5e32df68de0d488c425e14"
+    },
+    {
+      "path": "g4-pilot/verify-package.mjs",
+      "bytes": 954,
+      "sha256": "e71aeac59d6a8c761ee5e930939ee9dae0de37b0028e13a0a314da96e84e1fe3"
+    }
+  ]
+}
