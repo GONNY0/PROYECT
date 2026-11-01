@@ -1,8 +1,5 @@
 name: G4 finite scheduled startup pilot
-on:
-  schedule:
-    - cron: '37 18 30 10 *'
-    - cron: '37 18 31 10 *'
+on: []
 permissions:
   contents: read
 concurrency:
