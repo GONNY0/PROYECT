@@ -175,7 +175,7 @@
       "sha256": "399e74cc55d74f3a2c94fd56d30cdb0806a4d365cce89db58f9e29744839c5da"
     },
     {
-      "path": ".github/workflows/g4-public-startup-pilot.yml",
+      "path": "g4-startup/retired/g4-public-startup-pilot.yml",
       "bytes": 5345,
       "sha256": "06fa925fa1d8efcdf2182d8b9c62dc81b099e9c238d675369aebdd17a9b44f95"
     },
