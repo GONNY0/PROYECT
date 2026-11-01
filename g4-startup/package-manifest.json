@@ -176,8 +176,8 @@
     },
     {
       "path": ".github/workflows/g4-public-startup-pilot.yml",
-      "bytes": 5410,
-      "sha256": "3b0df18a362db6c625419f824cb2fd84c10183bacf9c4b6696b85b25d07bd7e3"
+      "bytes": 5345,
+      "sha256": "06fa925fa1d8efcdf2182d8b9c62dc81b099e9c238d675369aebdd17a9b44f95"
     },
     {
       "path": "g4-startup/README.md",
