@@ -12,9 +12,9 @@
       "bytes": 1355
     },
     {
-      "path": ".github/workflows/g4-public-schedule.yml",
-      "sha256": "5fdc16ee367cec2bc0a019f68cd69b06faeaa9272673a9ea353285cd845ddf8d",
-      "bytes": 1684
+      "path": "g4-public/retired/g4-public-schedule.yml",
+      "sha256": "e9d47334355d26a5c7fcd20d451cf5cd8a195457fe64796e73e07b519ce10068",
+      "bytes": 1613
     },
     {
       "path": "g4-public/README.md",
@@ -28,7 +28,7 @@
     },
     {
       "path": "g4-public/verify-package.mjs",
-      "sha256": "9c6c525e26a81f71d4610609c6f1b3bb2fd3e7aa8050dfa8a262fa638e179862",
+      "sha256": "40ed3e2aeca7ba7eb1d74376b799c6e70d7d5aa42e8c2c59da534f38f51c0630",
       "bytes": 1614
     },
     {

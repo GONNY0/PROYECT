@@ -4,9 +4,6 @@ on:
     branches: [codex/g4-public-schedule, main]
     paths: ['g4-public/**', '.github/workflows/g4-public-schedule.yml']
   workflow_dispatch:
-  schedule:
-    - cron: '13 0 21-31 10 *'
-    - cron: '13 0 1-20 11 *'
 permissions:
   contents: read
 concurrency:
