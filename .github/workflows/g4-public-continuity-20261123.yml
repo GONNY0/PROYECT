@@ -1,0 +1,112 @@
+name: G4 three-day public continuity trial
+on:
+  schedule:
+    - cron: '37 18 22 11 *'
+    - cron: '37 18 23 11 *'
+    - cron: '37 18 24 11 *'
+permissions:
+  contents: read
+concurrency:
+  group: g4-public-continuity-20261123-v1
+  cancel-in-progress: false
+jobs:
+  pilot:
+    if: github.event_name == 'schedule' && github.repository == 'GONNY0/PROYECT' && github.event.repository.private == false && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    defaults:
+      run:
+        working-directory: g4-continuity
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24.19.0
+          package-manager-cache: false
+      - name: Verify reviewed package
+        run: node verify-package.mjs
+      - name: Select only the registered cron and absolute session
+        id: session
+        env:
+          G4_EVENT_SCHEDULE: ${{ github.event.schedule }}
+        run: |
+          case "$G4_EVENT_SCHEDULE" in
+            "37 18 22 11 *") PLAN="plans/20261123.json"; PLAN_SHA="09d2bb539cc32ef1314623edf3128fb1afca3b89f375579fb07debec8f30b940" ;;
+            "37 18 23 11 *") PLAN="plans/20261124.json"; PLAN_SHA="4a305ba6d27a554be40087bb0d796a05755993cb106759f840e93f544bbd61b8" ;;
+            "37 18 24 11 *") PLAN="plans/20261125.json"; PLAN_SHA="d49645d85bdd015496d6b0834267c2bb9148f3d36cd622d92fd0a96a2553d31d" ;;
+            *) printf "%s\n" "Unregistered schedule" >&2; exit 1 ;;
+          esac
+          printf "plan=%s\nplan_sha256=%s\n" "$PLAN" "$PLAN_SHA" >> "$GITHUB_OUTPUT"
+          export G4_PLAN="$PWD/$PLAN"
+          node --input-type=module -e 'import fs from "node:fs"; import {validatePublicAvailabilityPilotPlan,publicAvailabilityPilotTiming} from "./work/public-availability-pilot.mjs"; const p=JSON.parse(fs.readFileSync(process.env.G4_PLAN)); validatePublicAvailabilityPilotPlan(p); const t=publicAvailabilityPilotTiming(p),now=Date.now(); if(now<t.notBeforeMs||now>t.latestReadyAtMs) throw Error("Outside registered startup interval");'
+      - name: Validate public capture and recovery controls
+        run: node --test --test-reporter=tap work/tests/public-availability-pilot.test.mjs work/tests/audit-public-availability-pilot.test.mjs work/tests/public-capture-bundle.test.mjs work/tests/public-capture-schedule.test.mjs work/tests/audit-public-schedule.test.mjs work/tests/public-capture-quality.test.mjs
+      - name: Prepare before the first absolute window
+        id: prepare
+        env:
+          PILOT_PLAN_SHA256: ${{ steps.session.outputs.plan_sha256 }}
+          PILOT_PLAN_FILE: ${{ steps.session.outputs.plan }}
+        run: |
+          node work/public-availability-pilot.mjs prepare --plan "$PWD/$PILOT_PLAN_FILE" --plan-sha256 "$PILOT_PLAN_SHA256" --directory "$PWD/out" > prepare-result.json
+          node --input-type=module -e 'import fs from "node:fs"; const r=JSON.parse(fs.readFileSync("prepare-result.json")); if(!/^[a-f0-9]{64}$/.test(r.readySha256)) throw Error("READY hash missing"); fs.appendFileSync(process.env.GITHUB_OUTPUT,"ready_sha256="+r.readySha256+"\n"); console.log(JSON.stringify(r));'
+      - name: Publish readiness before opening
+        id: publish_ready
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: g4-continuity-ready-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            g4-continuity/out/READY.json
+            g4-continuity/out/pilot-plan.json
+            g4-continuity/out/native-plan.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Wait and capture the three absolute windows
+        env:
+          PILOT_PLAN_SHA256: ${{ steps.session.outputs.plan_sha256 }}
+          PILOT_PLAN_FILE: ${{ steps.session.outputs.plan }}
+          PILOT_READY_SHA256: ${{ steps.prepare.outputs.ready_sha256 }}
+          G4_ARTIFACT_ID: ${{ steps.publish_ready.outputs.artifact-id }}
+          G4_ARTIFACT_DIGEST: ${{ steps.publish_ready.outputs.artifact-digest }}
+        run: |
+          node verify-ready-publication.mjs
+          node work/public-availability-pilot.mjs run --plan "$PWD/$PILOT_PLAN_FILE" --plan-sha256 "$PILOT_PLAN_SHA256" --directory "$PWD/out" --ready-sha256 "$PILOT_READY_SHA256"
+      - name: Record hashes of available plan and envelopes
+        if: always() && steps.session.outputs.plan != ''
+        env:
+          PILOT_PLAN_FILE: ${{ steps.session.outputs.plan }}
+          PILOT_PLAN_SHA256: ${{ steps.session.outputs.plan_sha256 }}
+        run: node log-envelopes.mjs
+      - name: Preserve control and partial failure evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: g4-continuity-control-${{ github.run_id }}-${{ github.run_attempt }}
+          path: g4-continuity/out/*.json
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Preserve window one original envelope
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: g4-continuity-window-01-${{ github.run_id }}-${{ github.run_attempt }}
+          path: g4-continuity/out/captures/01/
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Preserve window two original envelope
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: g4-continuity-window-02-${{ github.run_id }}-${{ github.run_attempt }}
+          path: g4-continuity/out/captures/02/
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Preserve window three original envelope
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: g4-continuity-window-03-${{ github.run_id }}-${{ github.run_attempt }}
+          path: g4-continuity/out/captures/03/
+          if-no-files-found: warn
+          retention-days: 14
