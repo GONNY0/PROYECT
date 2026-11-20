@@ -1,0 +1,113 @@
+{
+  "schemaVersion": "g4.public-continuity-series.v1",
+  "id": "g4-public-continuity-20261123-v1",
+  "repository": "GONNY0/PROYECT",
+  "workflowPath": ".github/workflows/g4-public-continuity-20261123.yml",
+  "registeredAtMs": 1795204660908,
+  "sessions": [
+    {
+      "date": "2026-11-23",
+      "sessionDate": "20261123",
+      "cron": "37 18 22 11 *",
+      "planFile": "plans/20261123.json",
+      "planSha256": "09d2bb539cc32ef1314623edf3128fb1afca3b89f375579fb07debec8f30b940",
+      "nativePlanFileSha256": "bbd2ebdf50ee612975a8f7c83606ece820069fe895c87c3b3ef5ac3f89fb5d7f",
+      "schedulePlanSha256": "b33d191b0e216c54b1fb145891faedcfad17899e29b58d8fe090d64af1f40ca6",
+      "scheduleId": "g4-continuity-20261123-v1",
+      "notBeforeMs": 1795372620000,
+      "latestReadyAtMs": 1795392480000,
+      "expiresAtMs": 1795393170000,
+      "windows": [
+        {
+          "id": "continuity-20261123-01",
+          "openMs": 1795392600000,
+          "closeMs": 1795392690000
+        },
+        {
+          "id": "continuity-20261123-02",
+          "openMs": 1795392840000,
+          "closeMs": 1795392930000
+        },
+        {
+          "id": "continuity-20261123-03",
+          "openMs": 1795393080000,
+          "closeMs": 1795393170000
+        }
+      ]
+    },
+    {
+      "date": "2026-11-24",
+      "sessionDate": "20261124",
+      "cron": "37 18 23 11 *",
+      "planFile": "plans/20261124.json",
+      "planSha256": "4a305ba6d27a554be40087bb0d796a05755993cb106759f840e93f544bbd61b8",
+      "nativePlanFileSha256": "716d83ea88050d42df27f77212bebe1bbf42deb7f930d94d9e151d4912689b0f",
+      "schedulePlanSha256": "ca7d93c1b47c33e9c32d000b08a7f9b6addd480a676b18efdb8107971e0e3761",
+      "scheduleId": "g4-continuity-20261124-v1",
+      "notBeforeMs": 1795459020000,
+      "latestReadyAtMs": 1795478880000,
+      "expiresAtMs": 1795479570000,
+      "windows": [
+        {
+          "id": "continuity-20261124-01",
+          "openMs": 1795479000000,
+          "closeMs": 1795479090000
+        },
+        {
+          "id": "continuity-20261124-02",
+          "openMs": 1795479240000,
+          "closeMs": 1795479330000
+        },
+        {
+          "id": "continuity-20261124-03",
+          "openMs": 1795479480000,
+          "closeMs": 1795479570000
+        }
+      ]
+    },
+    {
+      "date": "2026-11-25",
+      "sessionDate": "20261125",
+      "cron": "37 18 24 11 *",
+      "planFile": "plans/20261125.json",
+      "planSha256": "d49645d85bdd015496d6b0834267c2bb9148f3d36cd622d92fd0a96a2553d31d",
+      "nativePlanFileSha256": "65aa832f133dab2563c7a0e468f51ca74da944bfb9bae5f581ca4442f479cd88",
+      "schedulePlanSha256": "2215854a993cd6295285606e9cf0dbb3a18fdf34bf1e851210a2f699d4822227",
+      "scheduleId": "g4-continuity-20261125-v1",
+      "notBeforeMs": 1795545420000,
+      "latestReadyAtMs": 1795565280000,
+      "expiresAtMs": 1795565970000,
+      "windows": [
+        {
+          "id": "continuity-20261125-01",
+          "openMs": 1795565400000,
+          "closeMs": 1795565490000
+        },
+        {
+          "id": "continuity-20261125-02",
+          "openMs": 1795565640000,
+          "closeMs": 1795565730000
+        },
+        {
+          "id": "continuity-20261125-03",
+          "openMs": 1795565880000,
+          "closeMs": 1795565970000
+        }
+      ]
+    }
+  ],
+  "maxMarketGetsPerSession": 9,
+  "maxPublicReadyApiGetsPerSession": 1,
+  "continuityCriterion": {
+    "requiredConsecutiveUtcDates": 3,
+    "requiredFirstScheduledSessionStarts": 3,
+    "requiredAcceptedAvailabilityWindowsPerSession": 3,
+    "allRegisteredDatesInDenominator": true,
+    "requireExternalRegistrationBeforeFirstStart": true,
+    "requireCompleteVisibleAttemptsReconciliation": true,
+    "requireExternalReadyBeforeEachCutoff": true,
+    "recordDataQualitySeparately": true,
+    "historicalOrFixtureCredit": false
+  },
+  "financialAcceptance": false
+}
