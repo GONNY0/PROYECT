@@ -3,7 +3,7 @@
   "frozenSourceManifestSha256": "8a615beac35c8c3f565cc2dc7d1d647a6cc1ec275939c492d210334bc7ec9098",
   "files": [
     {
-      "path": ".github/workflows/g4-public-continuity-20261123.yml",
+      "path": "g4-continuity/retired/g4-public-continuity-20261123.yml",
       "bytes": 6148,
       "sha256": "8c4e9d4843ed94bdb8a5ae3543f5bbf910d27ca4dedb814a35003aa3e8959f02"
     },
@@ -34,8 +34,8 @@
     },
     {
       "path": "g4-continuity/verify-package.mjs",
-      "bytes": 1963,
-      "sha256": "d434ab2ce163764976bacc62d4b4756b17902ac7696b22637de95113b1615ab9"
+      "bytes": 2087,
+      "sha256": "01cff97c655a2d2a286197490812f7c834bae0b4a08794710ca562d3bd5ba79f"
     },
     {
       "path": "g4-continuity/verify-ready-publication.mjs",
